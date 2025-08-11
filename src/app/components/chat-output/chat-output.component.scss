@@ -50,6 +50,16 @@
   color: var(--text-primary);
   
 }
+.container {
+  max-width: 768px;
+  width: 100%;
+  margin: 0 auto; /* centers the container */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 
 .msg.user {
   background: var(--accent);
@@ -68,6 +78,7 @@
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  // width: 100%;
 }
 
 .actions {

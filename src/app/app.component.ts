@@ -60,7 +60,7 @@ getSelectedModel(model: { modelId: string; name: string }) {
       }
     }
   }
-sidebarCollapsed = false;
+sidebarCollapsed = true;
 
 toggleSidebar() {
   this.sidebarCollapsed = !this.sidebarCollapsed;

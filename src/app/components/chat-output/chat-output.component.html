@@ -1,21 +1,27 @@
 <div class="chat-area px-3 py-2" aria-live="polite">
-    <div style="max-width: 768px;display: flex;flex-direction: column;gap: 8px;margin: auto;">
-
-  <div *ngFor="let m of messages" class="msg" [class.user]="m.role === 'user'">
-    <div class="meta">
-      <strong>{{ m.role }}</strong> • {{ m.ts | date : "shortTime" }}
+  <div class="container">
+    <div
+      *ngFor="let m of messages"
+      class="msg"
+      [class.user]="m.role === 'user'"
+    >
+      <div class="meta">
+        <strong>{{ m.role }}</strong> • {{ m.ts | date : "shortTime" }}
+      </div>
+      <div class="actions">
+        <button
+          (click)="onCopy(m.text)"
+          class="btn p-0 border-0 bg-transparent"
+        >
+          <i class="bi bi-clipboard"></i>
+        </button>
+      </div>
+      <div class="body">{{ m.text }}</div>
     </div>
-    <div class="actions">
-      <button (click)="onCopy(m.text)" class="btn p-0 border-0 bg-transparent">
-        <i class="bi bi-clipboard"></i>
-      </button>
-    </div>
-    <div class="body">{{ m.text }}</div>
+     <div *ngIf="loading" class="loading">Generating...</div>
   </div>
-    </div>
 
-
-  <div *ngIf="loading" class="loading">Generating...</div>
+ 
 
   <!-- <div style="margin-top: 8px">
     <button (click)="onDownload()">Download JSON</button>
