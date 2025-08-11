@@ -1,0 +1,21 @@
+// input { width:97%; padding:10px; border-radius:8px; border:none; font-family:inherit;background-color: #302f2f; }
+button { margin-right:8px; padding:8px 10px; border-radius:6px; border:0; background:var(--accent); color:white; }
+button:nth-child(2) { background:#fff; color:var(--accent); border:1px solid var(--accent); }
+label { font-weight:600; display:block; margin-bottom:6px; }
+input {
+  width: calc(100% - 40px); /* Adjust width to account for padding */
+  padding: 10px;
+  border-radius: 16px;
+  border: none;
+  font-family: inherit;
+  background-color: #302f2f;
+  outline: none;          /* removes focus outline */
+  box-shadow: none;
+  color: #fff;       /* removes any focus shadow */
+}
+
+input:focus {
+  outline: none;          /* ensures no outline on focus */
+  box-shadow: none;       /* ensures no shadow on focus */
+  border: none;           /* no border on focus */
+}

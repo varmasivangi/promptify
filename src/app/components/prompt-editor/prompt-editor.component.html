@@ -1,0 +1,26 @@
+<div
+  class="d-flex align-items-center prompt p-1 pe-0"
+  style="background-color: #302f2f; border: 1px solid #ccc; border-radius: 24px;max-width: 768px;margin: auto;"
+>
+  <!-- <label for="prompt">Prompt</label> -->
+  <input
+    id="prompt"
+    [(ngModel)]="text"
+    rows="2"
+    placeholder="Type your question or prompt..."
+  />
+  <div class="d-flex">
+    <button
+      class="btn btn-primary"
+      (click)="onSend()"
+      aria-label="Send"
+      style="border-radius: 50% 50% 50% 9%"
+    >
+      <i class="bi bi-send-fill"></i>
+    </button>
+
+    <!-- <button class="btn btn-secondary" (click)="onSave()" aria-label="Save Template">
+    <i class="bi bi-save-fill"></i>
+  </button> -->
+  </div>
+</div>

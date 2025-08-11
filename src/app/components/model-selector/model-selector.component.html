@@ -1,0 +1,4 @@
+<!-- <label>Model</label> -->
+<select (change)="onModelChange($event)" [value]="selected.modelId">
+  <option *ngFor="let m of models" [value]="m.modelId">{{ m.name }}</option>
+</select>
