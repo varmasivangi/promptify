@@ -10,40 +10,48 @@
     display: block;
   "
 >
-  <div class="d-flex align-items-center prompt p-1 pe-0 gap-1">
-    <div class="dropdown">
-      <i
-        class="bi bi-plus-lg fs-3"
-        style="cursor: pointer"
-        (click)="toggleChips()"
-      ></i>
-    </div>
-
-    <input
-      id="prompt"
-      [(ngModel)]="text"
-      rows="2"
-      placeholder="Type your question or prompt..."
-    />
-
-    <div class="d-flex">
-      <button
-        class="btn btn-primary"
-        (click)="onSend()"
-        [disabled]="loading"
-        aria-label="Send"
-        style="border-radius: 50% 50% 50% 9%"
-      >
-        <i
-          [ngClass]="{ 'bi bi-send-fill': !loading, 'spinner-border': loading }"
-        ></i>
-      </button>
-
-
-    </div>
+<div class="d-flex align-items-center prompt p-1 pe-0 gap-1">
+  <div class="dropdown">
+    <i
+      class="bi bi-plus-lg fs-3"
+      style="cursor: pointer"
+      (click)="toggleChips()"
+    ></i>
   </div>
 
-  <!-- Chips Container -->
+  <input
+    id="prompt"
+    [(ngModel)]="text"
+    rows="2"
+    placeholder="Type your question or prompt..."
+  />
+
+  <!-- Mic Button -->
+  <button
+    class="btn btn-secondary"
+    type="button"
+    (click)="toggleMic()"
+    style="border-radius: 50%"
+    [ngClass]="{ 'bg-danger': listening }"
+  >
+    <i class="bi" [ngClass]="listening ? 'bi-mic-fill' : 'bi-mic'"></i>
+  </button>
+
+  <div class="d-flex">
+    <button
+      class="btn btn-primary"
+      (click)="onSend()"
+      [disabled]="loading"
+      aria-label="Send"
+      style="border-radius: 50% 50% 50% 9%"
+    >
+      <i
+        [ngClass]="{ 'bi bi-send-fill': !loading, 'spinner-border': loading }"
+      ></i>
+    </button>
+  </div>
+</div>
+
 <div class="chips-container-wrapper" [class.show]="chipsVisible">
   <div class="chips-container">
     <span class="chip" (click)="downloadJSONs()">
