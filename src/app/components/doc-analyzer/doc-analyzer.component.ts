@@ -23,6 +23,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class DocAnalyzerComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() pdfDataChange = new EventEmitter<string>();
+  @Output() toggleDocumentAnalyzer = new EventEmitter<void>(false);
   @ViewChild('pdfCanvas', { static: false })
   pdfCanvas!: ElementRef<HTMLCanvasElement>;
 
@@ -136,21 +137,41 @@ export class DocAnalyzerComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  removePdf(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('pdfData');
-      localStorage.removeItem('pdfName');
-    }
+removePdf(): void {
+  const hasPdf =
+    (isPlatformBrowser(this.platformId) &&
+      (localStorage.getItem('pdfData') || localStorage.getItem('pdfName'))) ||
+    this.isPdfLoaded;
 
-    this.isPdfLoading = false;
-    this.isPdfLoaded = false;
-
-    if (this.pdfCanvas?.nativeElement) {
-      const canvas = this.pdfCanvas.nativeElement;
-      const context = canvas.getContext('2d');
-      context?.clearRect(0, 0, canvas.width, canvas.height);
-      canvas.width = 0;
-      canvas.height = 0;
-    }
+  if (!hasPdf) {
+    // Perform alternative action here
+    console.warn('No PDF found to remove.');
+    // Example: Show a toast, alert, or run another function
+    this.showNoPdfMessage();
+    return;
   }
+
+  // Remove from local storage if in browser
+  if (isPlatformBrowser(this.platformId)) {
+    localStorage.removeItem('pdfData');
+    localStorage.removeItem('pdfName');
+  }
+
+  this.isPdfLoading = false;
+  this.isPdfLoaded = false;
+
+  // Clear canvas if exists
+  if (this.pdfCanvas?.nativeElement) {
+    const canvas = this.pdfCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    context?.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = 0;
+    canvas.height = 0;
+  }
+}
+
+private showNoPdfMessage(): void {
+  this.toggleDocumentAnalyzer.emit();
+}
+
 }

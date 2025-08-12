@@ -167,9 +167,7 @@ export class AppComponent {
     return this.templates[name] ?? '';
   }
 
-
   onDownload() {
-    
     if (isPlatformBrowser(this.platformId)) {
       const blob = new Blob([JSON.stringify(this.messages, null, 2)], {
         type: 'application/json',
@@ -194,7 +192,6 @@ export class AppComponent {
   }
   fileData: any;
   onPdfDataReceived(base64Pdf: string) {
-  
     // console.log('Received PDF base64 data from child:', base64Pdf);
     const fileData = {
       inlineData: {
@@ -207,7 +204,6 @@ export class AppComponent {
     console.log('File data set in parent component:', this.fileData);
   }
   openDocumentAnalyzer() {
-
     this.isDocumentAnalyzerOpen = !this.isDocumentAnalyzerOpen;
   }
 }
