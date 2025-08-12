@@ -5,4 +5,5 @@ export interface ChatMessage {
   role: Role;
   text: string;
   ts: number;
+  provider: string;
 }

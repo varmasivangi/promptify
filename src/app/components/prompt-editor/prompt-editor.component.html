@@ -13,10 +13,11 @@
     <button
       class="btn btn-primary"
       (click)="onSend()"
+      [disabled]="loading"
       aria-label="Send"
       style="border-radius: 50% 50% 50% 9%"
     >
-      <i class="bi bi-send-fill"></i>
+      <i [ngClass]="{'bi bi-send-fill': !loading, 'spinner-border': loading}"></i>
     </button>
 
     <!-- <button class="btn btn-secondary" (click)="onSave()" aria-label="Save Template">

@@ -1,4 +1,20 @@
-<!-- <label>Model</label> -->
+<!-- <label for="apiTool">AI Platform</label>
+<select id="apiTool" (change)="onApiToolChange($event)" [value]="selectedApiTool">
+  <option *ngFor="let tool of apiTools" [value]="tool.id">{{ tool.name }}</option>
+</select>
+
+<label>Model</label>
 <select (change)="onModelChange($event)" [value]="selected.modelId">
   <option *ngFor="let m of models" [value]="m.modelId">{{ m.name }}</option>
+</select> -->
+
+
+<label for="apiTool">AI Platform</label>
+<select id="apiTool" (change)="onApiToolChange($event)" [value]="selectedApiTool">
+  <option *ngFor="let tool of apiTools" [value]="tool.id">{{ tool.name }}</option>
+</select>
+
+<label>Model</label>
+<select (change)="onModelChange($event)" [value]="selected.modelId">
+  <option *ngFor="let m of filteredModels" [value]="m.modelId">{{ m.name }}</option>
 </select>

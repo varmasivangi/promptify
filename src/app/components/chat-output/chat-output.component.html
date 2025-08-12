@@ -1,4 +1,4 @@
-<div class="chat-area px-3 py-2" aria-live="polite">
+<!-- <div class="chat-area px-3 py-2" aria-live="polite">
   <div class="container">
     <div
       *ngFor="let m of messages"
@@ -13,17 +13,73 @@
           (click)="onCopy(m.text)"
           class="btn p-0 border-0 bg-transparent"
         >
-          <i class="bi bi-clipboard"></i>
+          <i class="bi bi-copy"></i>
+        </button>
+            <button
+          (click)="onCopy(m.text)"
+          class="btn p-0 border-0 bg-transparent"
+        >
+          <i class="bi bi-pencil-square ms-"></i>
         </button>
       </div>
       <div class="body">{{ m.text }}</div>
     </div>
      <div *ngIf="loading" class="loading">Generating...</div>
-  </div>
+  </div> -->
 
- 
 
+<!-- </div> -->
+
+<div class="chat-area px-3 py-2" aria-live="polite">
   <!-- <div style="margin-top: 8px">
     <button (click)="onDownload()">Download JSON</button>
   </div> -->
+  <div class="container">
+    <div
+      *ngFor="let m of messages; let i = index"
+      class="msg"
+      [class.user]="m.role === 'user'"
+    >
+
+      <div class="meta">
+        <strong>{{ m.role }}</strong> • {{ m.ts | date : "shortTime" }} •
+        <em>{{ m.provider || "unknown" }}</em>
+      </div>
+
+      <div class="actions">
+        <button
+          (click)="onCopy(m.text)"
+          class="btn p-0 border-0 bg-transparent"
+        >
+          <i class="bi bi-copy"></i>
+        </button>
+
+        <button (click)="startEdit(i)" class="btn p-0 border-0 bg-transparent">
+          <i class="bi bi-pencil-square ms-1"></i>
+        </button>
+      </div>
+
+      <!-- If this is being edited -->
+      <div *ngIf="editingIndex === i; else viewMode">
+        <textarea
+          [(ngModel)]="editText"
+          rows="2"
+          class="form-control mb-2"
+        ></textarea>
+        <button class="btn btn-sm btn-primary me-1" (click)="saveEdit(i)">
+          Save
+        </button>
+        <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">
+          Cancel
+        </button>
+      </div>
+
+      <!-- Normal message display -->
+      <ng-template #viewMode>
+        <div class="body">{{ m.text }}</div>
+      </ng-template>
+    </div>
+
+    <div *ngIf="loading" class="loading">Generating...</div>
+  </div>
 </div>

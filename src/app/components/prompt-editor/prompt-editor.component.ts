@@ -1,23 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-prompt-editor',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './prompt-editor.component.html',
-  styleUrl: './prompt-editor.component.scss'
+  styleUrl: './prompt-editor.component.scss',
 })
-
 export class PromptEditorComponent {
- text = '';
+  text = '';
   @Output() send = new EventEmitter<string>();
-  @Output() saveTemplate = new EventEmitter<{name:string,text:string}>();
-
-
-
+  @Output() saveTemplate = new EventEmitter<{ name: string; text: string }>();
+  @Input() loading = false;
   onSend() {
     this.send.emit(this.text);
+    this.text = '';
   }
 
   onSave() {
@@ -27,7 +25,6 @@ export class PromptEditorComponent {
   }
 
   loadTemplate(text: string) {
-  this.text = text; // or however your editor sets the value
-}
-
+    this.text = text; // or however your editor sets the value
+  }
 }
