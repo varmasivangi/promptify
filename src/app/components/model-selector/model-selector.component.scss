@@ -1,2 +1,43 @@
-select { width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #ddd; }
-label { font-weight:600; }
+/* Label Styling */
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+/* Select Dropdown Styling */
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #444);
+  background-color: var(--panel); /* dark panel background */
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  appearance: none; /* Remove native arrow */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='30,50 70,90 110,50' fill='none' stroke='%23ccc' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  transition: all 0.2s ease;
+}
+
+/* Hover & Focus Effects */
+select:hover {
+  border-color: var(--accent-color);
+}
+
+select:focus {
+  border-color: var(--accent-color);
+  background-color: var(--hover-bg);
+  outline: none;
+}
+
+/* Option Styling */
+select option {
+  background-color: var(--panel);
+  color: var(--text-primary);
+}

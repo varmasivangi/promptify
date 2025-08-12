@@ -12,7 +12,9 @@ export class PromptEditorComponent {
   text = '';
   @Output() send = new EventEmitter<string>();
   @Output() saveTemplate = new EventEmitter<{ name: string; text: string }>();
+  @Output() toggleDocumentAnalyzer = new EventEmitter<void>(false);
   @Input() loading = false;
+  @Output() downloadJSON = new EventEmitter<void>();
   onSend() {
     this.send.emit(this.text);
     this.text = '';
@@ -27,4 +29,30 @@ export class PromptEditorComponent {
   loadTemplate(text: string) {
     this.text = text; // or however your editor sets the value
   }
+
+  openDocumentAnalyzer() {
+    this.toggleDocumentAnalyzer.emit();
+  }
+  openFileUploader() {}
+  openSettings() {}
+
+  downloadJSONs(){
+ 
+    this.downloadJSON.emit();
+  }
+
+  chipsVisible = false;
+
+toggleChips() {
+  this.chipsVisible = !this.chipsVisible;
+}
+
+summarizeText() {
+  // Implement your summarize text logic here
+}
+
+clearChat()
+{
+
+}
 }

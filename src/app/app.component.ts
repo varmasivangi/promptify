@@ -28,7 +28,6 @@ import { DocAnalyzerComponent } from './components/doc-analyzer/doc-analyzer.com
 export class AppComponent {
   title = 'Promptify (Angular 19)';
 
-
   models: any[] = [
     {
       id: 'g2',
@@ -69,6 +68,7 @@ export class AppComponent {
   ];
 
   selectedModel = this.models[0];
+  isDocumentAnalyzerOpen: boolean = false;
   getSelectedModel(model: {
     id: string;
     modelId: string;
@@ -167,7 +167,9 @@ export class AppComponent {
     return this.templates[name] ?? '';
   }
 
+
   onDownload() {
+    
     if (isPlatformBrowser(this.platformId)) {
       const blob = new Blob([JSON.stringify(this.messages, null, 2)], {
         type: 'application/json',
@@ -190,9 +192,9 @@ export class AppComponent {
   uid() {
     return Math.random().toString(36).slice(2, 10);
   }
-  fileData:any
+  fileData: any;
   onPdfDataReceived(base64Pdf: string) {
-    alert(1)
+  
     // console.log('Received PDF base64 data from child:', base64Pdf);
     const fileData = {
       inlineData: {
@@ -203,5 +205,9 @@ export class AppComponent {
     this.fileData = fileData;
 
     console.log('File data set in parent component:', this.fileData);
+  }
+  openDocumentAnalyzer() {
+
+    this.isDocumentAnalyzerOpen = !this.isDocumentAnalyzerOpen;
   }
 }

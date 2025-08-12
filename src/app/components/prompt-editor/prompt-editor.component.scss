@@ -8,14 +8,89 @@ input {
   border-radius: 16px;
   border: none;
   font-family: inherit;
-  background-color: #302f2f;
-  outline: none;          /* removes focus outline */
-  box-shadow: none;
-  color: #fff;       /* removes any focus shadow */
+  background-color: var(--panel); /* Panel background */
+  color: var(--text-primary);     /* Primary text color */
+  outline: none;                  /* Removes focus outline */
+  box-shadow: none;               /* Removes shadow */
+  transition: background-color 0.2s, border-color 0.2s;
 }
+
+input::placeholder {
+  color: var(--meta-color);       /* Muted placeholder color */
+}
+
+input:focus {
+  background-color: var(--hover-bg); /* Slightly lighter on focus */
+  border: 1px solid var(--accent-color); /* Accent border on focus */
+}
+
 
 input:focus {
   outline: none;          /* ensures no outline on focus */
   box-shadow: none;       /* ensures no shadow on focus */
   border: none;           /* no border on focus */
+}
+
+.bi-plus-lg{
+  color:var(--accent);
+}
+
+
+
+
+.dropdown-toggle::after {
+  display: none; /* Removes default caret from Bootstrap */
+}
+
+.spinner-border{
+  width: 16px;
+  height: 16px;
+}
+.chips-container-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.chips-container-wrapper.show {
+  max-height: 250px; /* Slightly more space for icons/text */
+}
+
+.chips-container {
+  text-align: center;
+  padding: 0px;
+  background-color: var(--panel);
+  border-top: 1px solid var(--border-color);
+  border-radius: 50px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* space between icon and text */
+  background-color: var(--hover-bg);
+  color: var(--text-color);
+  padding: 8px 14px;
+  margin: 6px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border: 1px solid var(--border-color);
+  
+}
+
+.chip i {
+  font-size: 1rem;
+  color: var(--accent-color);
+}
+
+.chip:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.chip:hover i {
+  color: #fff;
 }
