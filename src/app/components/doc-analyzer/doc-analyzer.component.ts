@@ -67,11 +67,14 @@ export class DocAnalyzerComponent implements OnInit, AfterViewInit, OnDestroy {
       const reader = new FileReader();
       reader.onload = () => {
         if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('pdfData', reader.result as string);
+          const result = reader.result as string;
+          localStorage.setItem('pdfData', result);
           localStorage.setItem('pdfName', file.name);
+
+          this.pdfDataChange.emit(result);
+          console.log('Child emitting PDF data', result);
           this.isPdfLoading = true;
-          this.renderPdfToCanvas(reader.result as string);
-          this.pdfDataChange.emit(reader.result as string);
+          this.renderPdfToCanvas(result);
         }
       };
       reader.readAsDataURL(file);

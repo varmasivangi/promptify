@@ -28,19 +28,7 @@ import { DocAnalyzerComponent } from './components/doc-analyzer/doc-analyzer.com
 export class AppComponent {
   title = 'Promptify (Angular 19)';
 
-  // models: any[] = [
-  //   { id: 'g2', name: 'Gemini 1.5 Flash', modelId: 'gemini-1.5-flash' },
-  //  { id: 'g1', name: 'Gemini 1.5 Pro', modelId: 'gemini-1.5-pro' }
 
-  // ];
-  // models: any[] = [
-  //   { id: 'g2', name: 'Gemini 1.5 Flash', modelId: 'gemini-1.5-flash' },
-  //   { id: 'g1', name: 'Gemini 1.5 Pro', modelId: 'gemini-1.5-pro' },
-
-  //   // ChatGPT models
-  //   { id: 'chatgpt-3.5', name: 'ChatGPT 3.5 Turbo', modelId: 'chatgpt-3.5-turbo' },
-  //   { id: 'chatgpt-4', name: 'ChatGPT 4', modelId: 'chatgpt-4' }
-  // ];
   models: any[] = [
     {
       id: 'g2',
@@ -204,7 +192,8 @@ export class AppComponent {
   }
   fileData:any
   onPdfDataReceived(base64Pdf: string) {
-    console.log('Received PDF base64 data from child:', base64Pdf);
+    alert(1)
+    // console.log('Received PDF base64 data from child:', base64Pdf);
     const fileData = {
       inlineData: {
         mimeType: 'application/pdf',
@@ -212,5 +201,7 @@ export class AppComponent {
       },
     };
     this.fileData = fileData;
+
+    console.log('File data set in parent component:', this.fileData);
   }
 }
