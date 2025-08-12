@@ -108,23 +108,70 @@ export class AppComponent {
     return Object.keys(obj || {});
   }
 
+  // async onSend(prompt: string) {
+  //   if (!prompt?.trim()) return;
+
+  //   const user: ChatMessage = {
+  //     id: this.uid(),
+  //     role: 'user',
+  //     text: prompt,
+  //     ts: Date.now(),
+  //     provider: this.selectedModel.provider,
+  //   };
+
+  //   this.messages = [...this.messages, user];
+  //   this.loading = true;
+
+  //   const res = await this.aiService.generateText(
+  //     this.selectedModel.provider,
+  //     this.selectedModel.modelId, // ✅ pass dynamic model
+  //     prompt,
+  //     this.temperature,
+  //     this.maxTokens,
+  //     this.fileData
+  //   );
+
+  //   if (res.success) {
+  //     const assistant: ChatMessage = {
+  //       id: this.uid(),
+  //       role: 'assistant',
+  //       text: res.data ?? '',
+  //       ts: Date.now(),
+  //       provider: this.selectedModel.provider,
+  //     };
+  //     this.messages = [...this.messages, assistant];
+  //   } else {
+  //     const errMsg: ChatMessage = {
+  //       id: this.uid(),
+  //       role: 'assistant',
+  //       text: 'Error: ' + res.error,
+  //       ts: Date.now(),
+  //       provider: this.selectedModel.provider,
+  //     };
+  //     this.messages = [...this.messages, errMsg];
+  //   }
+
+  //   this.loading = false;
+  // }
+
   async onSend(prompt: string) {
-    if (!prompt?.trim()) return;
+  if (!prompt?.trim()) return;
 
-    const user: ChatMessage = {
-      id: this.uid(),
-      role: 'user',
-      text: prompt,
-      ts: Date.now(),
-      provider: this.selectedModel.provider,
-    };
+  const user: ChatMessage = {
+    id: this.uid(),
+    role: 'user',
+    text: prompt,
+    ts: Date.now(),
+    provider: this.selectedModel.provider,
+  };
 
-    this.messages = [...this.messages, user];
-    this.loading = true;
+  this.messages = [...this.messages, user];
+  this.loading = true;
 
+  try {
     const res = await this.aiService.generateText(
       this.selectedModel.provider,
-      this.selectedModel.modelId, // ✅ pass dynamic model
+      this.selectedModel.modelId,
       prompt,
       this.temperature,
       this.maxTokens,
@@ -135,24 +182,39 @@ export class AppComponent {
       const assistant: ChatMessage = {
         id: this.uid(),
         role: 'assistant',
-        text: res.data ?? '',
+        text: res.data ?? 'No response generated.',
         ts: Date.now(),
         provider: this.selectedModel.provider,
       };
       this.messages = [...this.messages, assistant];
     } else {
+      const fallbackMessage = `I couldn't process your request right now. 
+Please try again in a moment.`;
+
       const errMsg: ChatMessage = {
         id: this.uid(),
         role: 'assistant',
-        text: 'Error: ' + res.error,
+        text: fallbackMessage,
         ts: Date.now(),
         provider: this.selectedModel.provider,
       };
       this.messages = [...this.messages, errMsg];
     }
+  } catch (error) {
+    const fallbackMessage = `Something went wrong on my side. Please try again later.`;
 
-    this.loading = false;
+    const errMsg: ChatMessage = {
+      id: this.uid(),
+      role: 'assistant',
+      text: fallbackMessage,
+      ts: Date.now(),
+      provider: this.selectedModel.provider,
+    };
+    this.messages = [...this.messages, errMsg];
   }
+
+  this.loading = false;
+}
 
   onSaveTemplate(name: string, text: string) {
     if (!name) return;
@@ -205,5 +267,8 @@ export class AppComponent {
   }
   openDocumentAnalyzer() {
     this.isDocumentAnalyzerOpen = !this.isDocumentAnalyzerOpen;
+  }
+  clearChat(){
+    this.messages = [];
   }
 }

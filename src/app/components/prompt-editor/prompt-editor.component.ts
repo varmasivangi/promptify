@@ -15,6 +15,8 @@ export class PromptEditorComponent {
   @Output() toggleDocumentAnalyzer = new EventEmitter<void>(false);
   @Input() loading = false;
   @Output() downloadJSON = new EventEmitter<void>();
+  @Output() clearChat = new EventEmitter<true>();
+
   onSend() {
     this.send.emit(this.text);
     this.text = '';
@@ -51,8 +53,8 @@ summarizeText() {
   // Implement your summarize text logic here
 }
 
-clearChat()
-{
+clearChats() {
 
+  this.clearChat.emit();
 }
 }

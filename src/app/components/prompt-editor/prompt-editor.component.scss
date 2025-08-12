@@ -1,48 +1,58 @@
-// input { width:97%; padding:10px; border-radius:8px; border:none; font-family:inherit;background-color: #302f2f; }
-button { margin-right:8px; padding:8px 10px; border-radius:6px; border:0; background:var(--accent); color:white; }
-button:nth-child(2) { background:#fff; color:var(--accent); border:1px solid var(--accent); }
-label { font-weight:600; display:block; margin-bottom:6px; }
+button {
+  margin-right: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 0;
+  background: var(--accent);
+  color: white;
+}
+button:nth-child(2) {
+  background: #fff;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
 input {
-  width: calc(100% - 40px); /* Adjust width to account for padding */
+  width: calc(100% - 40px);
   padding: 10px;
   border-radius: 16px;
   border: none;
   font-family: inherit;
-  background-color: var(--panel); /* Panel background */
-  color: var(--text-primary);     /* Primary text color */
-  outline: none;                  /* Removes focus outline */
-  box-shadow: none;               /* Removes shadow */
+  background-color: var(--panel);
+  color: var(--text-primary);
+  outline: none;
+  box-shadow: none;
   transition: background-color 0.2s, border-color 0.2s;
 }
 
 input::placeholder {
-  color: var(--meta-color);       /* Muted placeholder color */
+  color: var(--meta-color);
 }
 
 input:focus {
-  background-color: var(--hover-bg); /* Slightly lighter on focus */
-  border: 1px solid var(--accent-color); /* Accent border on focus */
+  background-color: var(--hover-bg);
+  border: 1px solid var(--accent-color);
 }
-
 
 input:focus {
-  outline: none;          /* ensures no outline on focus */
-  box-shadow: none;       /* ensures no shadow on focus */
-  border: none;           /* no border on focus */
+  outline: none;
+  box-shadow: none;
+  border: none;
 }
 
-.bi-plus-lg{
-  color:var(--accent);
+.bi-plus-lg {
+  color: var(--accent);
 }
-
-
-
 
 .dropdown-toggle::after {
-  display: none; /* Removes default caret from Bootstrap */
+  display: none;
 }
 
-.spinner-border{
+.spinner-border {
   width: 16px;
   height: 16px;
 }
@@ -53,7 +63,7 @@ input:focus {
 }
 
 .chips-container-wrapper.show {
-  max-height: 250px; /* Slightly more space for icons/text */
+  max-height: 250px;
 }
 
 .chips-container {
@@ -67,7 +77,7 @@ input:focus {
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px; /* space between icon and text */
+  gap: 6px;
   background-color: var(--hover-bg);
   color: var(--text-color);
   padding: 8px 14px;
@@ -77,7 +87,6 @@ input:focus {
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
   border: 1px solid var(--border-color);
-  
 }
 
 .chip i {
@@ -93,4 +102,18 @@ input:focus {
 
 .chip:hover i {
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .chip-text {
+    display: none;
+  }
+
+  .chip {
+    padding: 6px;
+  }
+
+  .chip i {
+    font-size: 1.2rem;
+  }
 }

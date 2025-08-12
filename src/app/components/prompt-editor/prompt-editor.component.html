@@ -1,76 +1,4 @@
-<!-- <div
-  style="
-    background-color: #302f2f;
-    border: 1px solid #ccc;
-    border-radius: 24px;
-    max-width: 768px;
-    margin: auto;
-    display: block;
-  "
->
-  <div class="d-flex align-items-center prompt p-1 pe-0">
- 
-    <div class="dropdown">
-      <i
-        class="bi bi-plus-lg fs-3 dropdown-toggle"
-        id="dropdownMenuButton"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        style="cursor: pointer"
-      ></i>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li>
-          <a class="dropdown-item" href="#" (click)="openDocumentAnalyzer()"
-            ><i class="bi bi-file-earmark-medical"></i> Doc Review</a
-          >
-        </li>
-        <li>
-          <a class="dropdown-item" href="#" (click)="downloadJSON()"
-            ><i class="bi bi-filetype-json"></i> Download JSON</a
-          >
-        </li>
-      </ul>
-    </div>
 
-    <input
-      id="prompt"
-      [(ngModel)]="text"
-      rows="2"
-      placeholder="Type your question or prompt..."
-    />
-    <div class="d-flex">
-      <button
-        class="btn btn-primary"
-        (click)="onSend()"
-        [disabled]="loading"
-        aria-label="Send"
-        style="border-radius: 50% 50% 50% 9%"
-      >
-        <i
-          [ngClass]="{ 'bi bi-send-fill': !loading, 'spinner-border': loading }"
-        ></i>
-      </button>
-
-      <button
-        class="btn btn-secondary ms-1"
-        (click)="downloadJSON()"
-        aria-label="Download JSON"
-        style="border-radius: 50%"
-      >
-        <i class="bi bi-download"></i>
-      </button>
-    </div>
-  </div>
-<div class="d-block w-100 text-center p-2">
-  <div class="chips-container">
-    <span class="chip">Summarize</span>
-    <span class="chip">Explain</span>
-    <span class="chip">Code Review</span>
-    <span class="chip">Generate Idea</span>
-  </div>
-</div>
-
-</div> -->
 
 <div
   style="
@@ -111,14 +39,7 @@
         ></i>
       </button>
 
-      <!-- <button
-        class="btn btn-secondary ms-1"
-        (click)="downloadJSON()"
-        aria-label="Download JSON"
-        style="border-radius: 50%"
-      >
-        <i class="bi bi-download"></i>
-      </button> -->
+
     </div>
   </div>
 
@@ -126,27 +47,26 @@
 <div class="chips-container-wrapper" [class.show]="chipsVisible">
   <div class="chips-container">
     <span class="chip" (click)="downloadJSONs()">
-      <i class="bi bi-download"></i> Download JSON
+      <i class="bi bi-download"></i>
+      <span class="chip-text">Download JSON</span>
     </span>
 
-    <span class="chip" (click)=" onSave()">
-      <i class="bi bi-save"></i> Save Template
+    <span class="chip" (click)="onSave()">
+      <i class="bi bi-save"></i>
+      <span class="chip-text">Save Template</span>
     </span>
 
     <span class="chip" (click)="openDocumentAnalyzer()">
-      <i class="bi bi-file-earmark-text"></i> Doc Review
+      <i class="bi bi-file-earmark-text"></i>
+      <span class="chip-text">Doc Review</span>
     </span>
 
-    <!-- <span class="chip" >
-      <i class="bi bi-lightning-charge"></i> Summarize
-    </span> -->
-
-
-
-    <span class="chip" (click)="clearChat()">
-      <i class="bi bi-trash"></i> Clear Chat
+    <span class="chip" (click)="clearChats()">
+      <i class="bi bi-trash"></i>
+      <span class="chip-text">Clear Chat</span>
     </span>
   </div>
 </div>
+
 
 </div>

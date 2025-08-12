@@ -1,5 +1,5 @@
 .container {
-  position: relative; /* ensure container is positioned */
+  position: relative; 
   height: calc(100vh - 100.74px);
   width: 95%;
   max-height: calc(100vh - 80px);
@@ -8,7 +8,7 @@
   border-radius: 20px;
 }
 
-/* Remove PDF button fixed inside container */
+
 .remove-pdf-btn {
   position: absolute;
   top: 10px;
@@ -20,7 +20,7 @@
   border-radius: 50%;
   cursor: pointer;
   font-weight: 600;
-  font-size: 18px;  // slightly bigger for icon clarity
+  font-size: 18px;  
   box-shadow: none;
   transition: 
     background-color 0.3s ease,
@@ -34,7 +34,7 @@ z-index: 1;
   &:hover,
   &:focus {
     background-color: var(--accent-color, #ff6600);
-    color: #fff;  // text/icon becomes white on hover
+    color: #fff;  
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.5);
   }
@@ -46,17 +46,11 @@ z-index: 1;
   display: flex;
   flex-direction: column;
   padding: 10px !important;
-//   background-color: var(--panel);
   border-radius: 12px;
-//   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
   overflow-y: scroll;
-
-  /* Set fixed height to allow scrolling */
-
-  /* Remove PDF button */
   .remove-pdf-btn {
     align-self: flex-end;
     margin-bottom: 20px;
@@ -73,7 +67,6 @@ z-index: 1;
     position: absolute;
     top: 10px;
     right: 10px;
-
     &:hover,
     &:focus {
       background-color: var(--accent-color, #ff6600);
@@ -129,26 +122,22 @@ z-index: 1;
   flex-direction: column;
   padding: 40px;
   border-radius: 12px;
-//   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
   overflow-y: auto;
-
-  /* Slim scroll for Firefox */
   scrollbar-width: thin;
   scrollbar-color: var(--accent-color, #ff6600) var(--panel);
 
-  /* WebKit browsers (Chrome, Safari, Opera) */
   &::-webkit-scrollbar {
-    width: 6px;              /* slim width */
+    width: 6px;            
     background-color: var(--panel);
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--accent-color, #ff6600);
     border-radius: 10px;
-    border: 1.5px solid var(--panel); /* padding around thumb */
+    border: 1.5px solid var(--panel); 
   }
 
   &::-webkit-scrollbar-track {
@@ -161,12 +150,14 @@ z-index: 1;
   justify-content: center;
   align-items: center;
   padding: 30px;
+  margin-top: auto;
+    margin-bottom: auto;
 }
 
 .upload-card {
-  background: var(--card-bg); /* Dark panel background */
-  border: 2px dashed var(--accent-color); /* Accent border */
-  color: var(--text-color); /* Text color from theme */
+  background: var(--card-bg); 
+  border: 2px dashed var(--accent-color);
+  color: var(--text-color);
   padding: 25px 40px;
   border-radius: 12px;
   cursor: pointer;
@@ -182,12 +173,12 @@ z-index: 1;
 
 .upload-card i {
   font-size: 30px;
-  color: var(--accent-color); /* Icon matches accent */
+  color: var(--accent-color); 
 }
 
 .upload-card:hover {
-  background: var(--hover-bg); /* Hover background */
-  border-color: var(--muted); /* Muted hover border */
+  background: var(--hover-bg); 
+  border-color: var(--muted);
   transform: scale(1.03);
 }
 

@@ -6,29 +6,23 @@
     type="button"
     title="Remove PDF"
   >
-    <!-- <i class="bi bi-x-circle"></i> -->
     <i class="bi bi-x-lg"></i>
   </button>
 
+  <section class="template-upload" *ngIf="!isPdfLoaded">
+    <label class="upload-card" for="pdfUpload">
+      <i class="bi bi-file-earmark-pdf"></i>
+      <span>Upload PDF Template</span>
+    </label>
+    <input
+      type="file"
+      id="pdfUpload"
+      accept=".pdf"
+      (change)="onFileSelected($event)"
+      hidden
+    />
+  </section>
 
-    <section class="template-upload" *ngIf="!isPdfLoaded">
-      <label class="upload-card" for="pdfUpload">
-        <i class="bi bi-file-earmark-pdf"></i>
-        <span>Upload PDF Template</span>
-      </label>
-      <input
-        type="file"
-        id="pdfUpload"
-        accept=".pdf"
-        (change)="onFileSelected($event)"
-        hidden
-      />
-    </section>
-
- 
-  
-
-  <!-- PDF Viewer section shows only if PDF is loaded -->
   <div class="pdf-section" *ngIf="isPdfLoaded">
     <canvas #pdfCanvas></canvas>
   </div>

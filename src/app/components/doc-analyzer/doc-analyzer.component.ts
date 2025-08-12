@@ -42,9 +42,7 @@ export class DocAnalyzerComponent implements OnInit, AfterViewInit, OnDestroy {
     private ngZone: NgZone
   ) {}
 
-  ngOnInit(): void {
-    // Add any initialization logic here if needed
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -56,9 +54,7 @@ export class DocAnalyzerComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    // Cleanup logic here if needed
-  }
+  ngOnDestroy(): void {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -123,9 +119,7 @@ export class DocAnalyzerComponent implements OnInit, AfterViewInit, OnDestroy {
               canvasContext: context!,
               viewport,
             })
-            .promise.then(() => {
-              // Optionally, do something after rendering
-            });
+            .promise.then(() => {});
         });
       })
       .catch((err: any) => {
@@ -137,41 +131,39 @@ export class DocAnalyzerComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-removePdf(): void {
-  const hasPdf =
-    (isPlatformBrowser(this.platformId) &&
-      (localStorage.getItem('pdfData') || localStorage.getItem('pdfName'))) ||
-    this.isPdfLoaded;
+  removePdf(): void {
+    const hasPdf =
+      (isPlatformBrowser(this.platformId) &&
+        (localStorage.getItem('pdfData') || localStorage.getItem('pdfName'))) ||
+      this.isPdfLoaded;
 
-  if (!hasPdf) {
-    // Perform alternative action here
-    console.warn('No PDF found to remove.');
-    // Example: Show a toast, alert, or run another function
-    this.showNoPdfMessage();
-    return;
+    if (!hasPdf) {
+      console.warn('No PDF found to remove.');
+
+      this.showNoPdfMessage();
+      return;
+    }
+
+    // Remove from local storage if in browser
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('pdfData');
+      localStorage.removeItem('pdfName');
+    }
+
+    this.isPdfLoading = false;
+    this.isPdfLoaded = false;
+
+    // Clear canvas if exists
+    if (this.pdfCanvas?.nativeElement) {
+      const canvas = this.pdfCanvas.nativeElement;
+      const context = canvas.getContext('2d');
+      context?.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.width = 0;
+      canvas.height = 0;
+    }
   }
 
-  // Remove from local storage if in browser
-  if (isPlatformBrowser(this.platformId)) {
-    localStorage.removeItem('pdfData');
-    localStorage.removeItem('pdfName');
+  private showNoPdfMessage(): void {
+    this.toggleDocumentAnalyzer.emit();
   }
-
-  this.isPdfLoading = false;
-  this.isPdfLoaded = false;
-
-  // Clear canvas if exists
-  if (this.pdfCanvas?.nativeElement) {
-    const canvas = this.pdfCanvas.nativeElement;
-    const context = canvas.getContext('2d');
-    context?.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = 0;
-    canvas.height = 0;
-  }
-}
-
-private showNoPdfMessage(): void {
-  this.toggleDocumentAnalyzer.emit();
-}
-
 }
