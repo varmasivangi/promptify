@@ -27,15 +27,19 @@
   />
 
   <!-- Mic Button -->
-  <button
-    class="btn btn-secondary"
-    type="button"
-    (click)="toggleMic()"
-    style="border-radius: 50%"
-    [ngClass]="{ 'bg-danger': listening }"
-  >
-    <i class="bi" [ngClass]="listening ? 'bi-mic-fill' : 'bi-mic'"></i>
-  </button>
+   <!-- Mic Button - Updated with better accessibility -->
+<button
+  class="btn btn-secondary"
+  type="button"
+  (click)="toggleMic()"
+  style="border-radius: 50%"
+  [ngClass]="{ 'bg-danger': listening }"
+  [attr.aria-pressed]="listening"
+  [attr.aria-label]="listening ? 'Stop listening' : 'Start listening'"
+>
+  <i class="bi" [ngClass]="listening ? 'bi-mic-mute-fill' : 'bi-mic-fill'"></i>
+</button>
+
 
   <div class="d-flex">
     <button
