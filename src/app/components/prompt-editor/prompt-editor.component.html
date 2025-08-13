@@ -1,5 +1,3 @@
-
-
 <div
   style="
     background-color: var(--panel);
@@ -10,74 +8,118 @@
     display: block;
   "
 >
-<div class="d-flex align-items-center prompt p-1 pe-0 gap-1">
-  <div class="dropdown">
-    <i
-      class="bi bi-plus-lg fs-3"
-      style="cursor: pointer"
-      (click)="toggleChips()"
-    ></i>
-  </div>
+  <div class="d-flex align-items-center prompt p-1 pe-0 gap-1">
+    <!-- Toggle Chips -->
+    <div class="dropdown">
+      <i
+        class="bi bi-plus-lg fs-3"
+        style="cursor: pointer"
+        role="button"
+        tabindex="0"
+        (click)="toggleChips()"
+        (keydown)="handleKeyPress($event, 'toggleChips')"
+        aria-label="Toggle chips menu"
+      ></i>
+    </div>
 
-  <input
-    id="prompt"
-    [(ngModel)]="text"
-    rows="2"
-    placeholder="Type your question or prompt..."
-  />
+    <!-- Input -->
+    <input
+      id="prompt"
+      [(ngModel)]="text"
+      placeholder="Type your question or prompt..."
+      (keydown.enter)="onSend()"
+    />
 
-
-<button
-  class="btn btn-secondary"
-  type="button"
-  (click)="toggleMic()"
-  style="border-radius: 50%"
-  [ngClass]="{ 'bg-danger': listening }"
-  [attr.aria-pressed]="listening"
-  [attr.aria-label]="listening ? 'Stop listening' : 'Start listening'"
->
-  <i class="bi" [ngClass]="listening ? 'bi-mic-mute-fill' : 'bi-mic-fill'"></i>
-</button>
-
-
-  <div class="d-flex">
+    <!-- Mic Button -->
     <button
       class="btn btn-secondary"
-      (click)="onSend()"
-      [disabled]="loading"
-      aria-label="Send"
-      style="border-radius: 50% 50% 50% 9%"
+      type="button"
+      (click)="toggleMic()"
+      style="border-radius: 50%"
+      [ngClass]="{ 'bg-danger': listening }"
+      [attr.aria-pressed]="listening"
+      [attr.aria-label]="listening ? 'Stop listening' : 'Start listening'"
     >
       <i
-        [ngClass]="{ 'bi bi-send-fill': !loading, 'spinner-border': loading }"
+        class="bi"
+        [ngClass]="listening ? 'bi-mic-mute-fill' : 'bi-mic-fill'"
       ></i>
     </button>
+
+    <!-- Send Button -->
+    <div class="d-flex">
+      <button
+        class="btn btn-secondary"
+        (click)="onSend()"
+        [disabled]="loading"
+        aria-label="Send"
+        style="border-radius: 50% 50% 50% 9%"
+      >
+        <i
+          [ngClass]="{ 'bi bi-send-fill': !loading, 'spinner-border': loading }"
+        ></i>
+      </button>
+    </div>
   </div>
-</div>
 
-<div class="chips-container-wrapper" [class.show]="chipsVisible">
-  <div class="chips-container">
-    <span class="chip" (click)="downloadJSONs()">
-      <i class="bi bi-download"></i>
-      <span class="chip-text">Download JSON</span>
-    </span>
+  <!-- Chips with tooltips -->
+  <div class="chips-container-wrapper" [class.show]="chipsVisible">
+    <div class="chips-container">
+      <span
+        class="chip"
+        role="button"
+        tabindex="0"
+        (click)="downloadJSONs()"
+        (keydown)="handleKeyPress($event, 'download')"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Download JSON"
+      >
+        <i class="bi bi-download"></i>
+        <span class="chip-text">Download JSON</span>
+      </span>
 
-    <span class="chip" (click)="onSave()">
-      <i class="bi bi-save"></i>
-      <span class="chip-text">Save Template</span>
-    </span>
+      <span
+        class="chip"
+        role="button"
+        tabindex="0"
+        (click)="onSave()"
+        (keydown)="handleKeyPress($event, 'save')"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Save Template"
+      >
+        <i class="bi bi-save"></i>
+        <span class="chip-text">Save Template</span>
+      </span>
 
-    <span class="chip" (click)="openDocumentAnalyzer()">
-      <i class="bi bi-file-earmark-text"></i>
-      <span class="chip-text">Doc Review</span>
-    </span>
+      <span
+        class="chip"
+        role="button"
+        tabindex="0"
+        (click)="openDocumentAnalyzer()"
+        (keydown)="handleKeyPress($event, 'review')"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Doc Review"
+      >
+        <i class="bi bi-file-earmark-text"></i>
+        <span class="chip-text">Doc Review</span>
+      </span>
 
-    <span class="chip" (click)="clearChats()">
-      <i class="bi bi-trash"></i>
-      <span class="chip-text">Clear Chat</span>
-    </span>
+      <span
+        class="chip"
+        role="button"
+        tabindex="0"
+        (click)="clearChats()"
+        (keydown)="handleKeyPress($event, 'clear')"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Clear Chat"
+      >
+        <i class="bi bi-trash"></i>
+        <span class="chip-text">Clear Chat</span>
+      </span>
+    </div>
   </div>
-</div>
-
-
 </div>

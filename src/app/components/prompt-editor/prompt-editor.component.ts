@@ -1,6 +1,14 @@
-
 import { FormsModule } from '@angular/forms';
-import { Component, EventEmitter, Inject, Input, OnDestroy, Output, PLATFORM_ID } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  Output,
+  PLATFORM_ID,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -10,7 +18,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   templateUrl: './prompt-editor.component.html',
   styleUrls: ['./prompt-editor.component.scss'],
 })
-export class PromptEditorComponent implements OnDestroy {
+export class PromptEditorComponent implements OnDestroy, AfterViewInit {
   text = '';
 
   @Input() loading = false;
@@ -47,6 +55,18 @@ export class PromptEditorComponent implements OnDestroy {
     }
   }
 
+  ngAfterViewInit() {
+    // Enable Bootstrap tooltips (hover + focus)
+    if (isPlatformBrowser(this.platformId)) {
+      const tooltipTriggerList = Array.from(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      tooltipTriggerList.forEach((el) => {
+        new (window as any).bootstrap.Tooltip(el, { trigger: 'hover focus' });
+      });
+    }
+  }
+
   toggleMic() {
     if (!this.recognition) {
       alert('Speech recognition is not supported in this browser.');
@@ -63,6 +83,7 @@ export class PromptEditorComponent implements OnDestroy {
   }
 
   onSend() {
+    if (!this.text.trim()) return;
     this.send.emit(this.text);
     this.text = '';
   }
@@ -81,14 +102,6 @@ export class PromptEditorComponent implements OnDestroy {
     this.toggleDocumentAnalyzer.emit();
   }
 
-  openFileUploader() {
-    // Placeholder for file upload logic
-  }
-
-  openSettings() {
-    // Placeholder for settings logic
-  }
-
   downloadJSONs() {
     this.downloadJSON.emit();
   }
@@ -97,12 +110,31 @@ export class PromptEditorComponent implements OnDestroy {
     this.chipsVisible = !this.chipsVisible;
   }
 
-  summarizeText() {
-    // Placeholder for text summarization logic
-  }
-
   clearChats() {
     this.clearChat.emit();
+  }
+
+  handleKeyPress(event: KeyboardEvent, action: string) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      switch (action) {
+        case 'download':
+          this.downloadJSONs();
+          break;
+        case 'save':
+          this.onSave();
+          break;
+        case 'review':
+          this.openDocumentAnalyzer();
+          break;
+        case 'clear':
+          this.clearChats();
+          break;
+        case 'toggleChips':
+          this.toggleChips();
+          break;
+      }
+    }
   }
 
   ngOnDestroy() {

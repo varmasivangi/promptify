@@ -103,17 +103,18 @@ input:focus {
 .chip:hover i {
   color: #fff;
 }
-
 @media (max-width: 768px) {
   .chip-text {
-    display: none;
+    display: inline;
+    font-size: 0.7rem;
   }
 
   .chip {
-    padding: 6px;
+    padding: 4px 8px;
+    gap: 4px;
   }
 
   .chip i {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
