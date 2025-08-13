@@ -58,11 +58,13 @@
 .sidebar-inner {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 114.74px);
+  height: calc(100vh - 115.74px);
 
   .theme-toggle-row {
-    margin-top: auto;
-    // margin-bottom: auto;
+    // margin-top: auto;
+    justify-content: end;
+    position: sticky;
+    bottom: 0px;
   }
 }
 
