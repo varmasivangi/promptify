@@ -106,7 +106,8 @@ button {
 }
 
 button:hover {
-  background: #cc5500; /* slightly darker orange on hover */
+  background: var(--accent); 
+  color: white;
 }
 
 button i {
